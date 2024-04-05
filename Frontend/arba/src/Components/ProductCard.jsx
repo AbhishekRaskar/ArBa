@@ -3,9 +3,17 @@ import { Box, Flex, Text, Image } from "@chakra-ui/react";
 
 const ProductCard = ({ product }) => {
   return (
-    <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
+    <Box
+      boxShadow={
+        "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;"
+      }
+      maxW="sm"
+      borderWidth="1px"
+      borderRadius="lg"
+      overflow="hidden"
+    >
       <Image m={"auto"} w={"50%"} src={product.image} alt={product.title} />
-
+      <br />
       <Box p="6">
         <Flex alignItems="baseline">
           <Text m={"auto"} fontSize="sm" color="gray.500">
