@@ -10,8 +10,16 @@ categoryRouter.use(auth);
 categoryRouter.post('/add', async (req, res) => {
     try {
         const { name } = req.body;
-        const slug = slugify(name, { lower: true }); // Generate slug from category name
+        const slug = slugify(name, { lower: true }); 
 
+        // Check if a document with the same slug already exists
+        const existingCategory = await categoryModel.findOne({ slug });
+
+        if (existingCategory) {
+            return res.status(400).json({ error: "Category with this slug already exists." });
+        }
+
+        // Create a new category document
         const category = new categoryModel({ ...req.body, name, slug, owner: req.user.userID });
         await category.save();
         res.status(201).json(category);
@@ -19,6 +27,7 @@ categoryRouter.post('/add', async (req, res) => {
         res.status(400).json({ error: err.message });
     }
 });
+
 // Read Categories
 categoryRouter.get('/', async (req, res) => {
     try {
