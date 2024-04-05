@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Flex, Text, Image } from "@chakra-ui/react";
+import { Box, Flex, Text, Image, Button } from "@chakra-ui/react";
 
 const ProductCard = ({ product }) => {
   return (
@@ -17,7 +17,7 @@ const ProductCard = ({ product }) => {
       <Box p="6">
         <Flex alignItems="baseline">
           <Text m={"auto"} fontSize="sm" color="gray.500">
-            {product.category}
+            ID : {product.category}
           </Text>
         </Flex>
 
@@ -28,14 +28,18 @@ const ProductCard = ({ product }) => {
           lineHeight="tight"
           isTruncated
         >
-          {product.title}
+          Title : {product.title}
         </Box>
 
         <Box>
           <Text mt="1" fontSize="lg" fontWeight="bold" color="gray.900">
-            ${product.price}
+            Price : ${product.price}
           </Text>
         </Box>
+        <br />
+        <Button colorScheme="linkedin" variant="solid">
+          Add To Cart
+        </Button>
       </Box>
     </Box>
   );
