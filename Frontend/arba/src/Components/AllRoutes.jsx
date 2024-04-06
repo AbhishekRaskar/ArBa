@@ -7,6 +7,7 @@ import PageNotFound from "../Pages/PageNotFound";
 import Profile from "../Pages/Profile";
 import Store from "../Pages/Store";
 import Contact from "../Pages/Contact";
+import Cart from "../Pages/Cart";
 
 const AllRoutes = () => {
   return (
@@ -18,6 +19,7 @@ const AllRoutes = () => {
       <Route path="/profile" element={<Profile />} />
       <Route path="/store" element={<Store />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/cart" element={<Cart />} />
     </Routes>
   );
 };

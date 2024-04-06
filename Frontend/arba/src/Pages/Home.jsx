@@ -9,6 +9,7 @@ import {
   ModalBody,
   ModalFooter,
   SimpleGrid,
+  useToast, // Import useToast hook
 } from "@chakra-ui/react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -26,6 +27,8 @@ const StyledSlider = ({ children }) => {
 const Home = () => {
   const [showDialog, setShowDialog] = useState(true);
   const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]);
+  const toast = useToast(); // Initialize useToast hook
 
   useEffect(() => {
     const hasAcceptedTerms = localStorage.getItem("acceptedTerms");
@@ -34,14 +37,6 @@ const Home = () => {
     }
   }, []);
 
-  const handleAccept = () => {
-    localStorage.setItem("acceptedTerms", "true");
-    setShowDialog(false);
-  };
-
-  const handleCancel = () => {
-    setShowDialog(true);
-  };
   useEffect(() => {
     async function fetchProducts() {
       try {
@@ -53,7 +48,6 @@ const Home = () => {
           },
         });
         const data = await response.json();
-        console.log(data);
         setProducts(data);
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -61,6 +55,36 @@ const Home = () => {
     }
     fetchProducts();
   }, []);
+
+  const addToCart = (product) => {
+    // Check if the product is already in the cart
+    const isProductInCart = cart.some((item) => item._id === product._id);
+
+    if (!isProductInCart) {
+      // If the product is not already in the cart, add it
+      const newCart = [...cart, product];
+      setCart(newCart);
+      // Save updated cart data to local storage
+      localStorage.setItem("cart", JSON.stringify(newCart));
+      // Display success toast message
+      toast({
+        title: "Product added to cart",
+        status: "success",
+        position: "top",
+        duration: 3000,
+        isClosable: true,
+      });
+    } else {
+      // If the product is already in the cart, display warning toast message
+      toast({
+        title: "Product already in cart",
+        status: "warning",
+        position: "top",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+  };
 
   const sliderSettings = {
     dots: true,
@@ -83,7 +107,7 @@ const Home = () => {
 
   return (
     <Box>
-      <Modal isOpen={showDialog} onClose={handleCancel}>
+      <Modal isOpen={showDialog} onClose={() => setShowDialog(false)}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Terms & Conditions</ModalHeader>
@@ -91,10 +115,17 @@ const Home = () => {
             <p>Please read and accept our terms and conditions.</p>
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={handleAccept}>
+            <Button
+              colorScheme="blue"
+              mr={3}
+              onClick={() => {
+                localStorage.setItem("acceptedTerms", "true");
+                setShowDialog(false);
+              }}
+            >
               Accept
             </Button>
-            <Button onClick={handleCancel}>Cancel</Button>
+            <Button onClick={() => setShowDialog(false)}>Cancel</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
@@ -149,9 +180,14 @@ const Home = () => {
         columns={{ base: 1, md: 2, lg: 3 }}
         spacing={6}
       >
-        {products.map((product) => (
-          <ProductCard key={product._id} product={product} />
-        ))}
+        {products.length > 0 &&
+          products.map((product) => (
+            <ProductCard
+              key={product._id}
+              product={product}
+              addToCart={addToCart}
+            />
+          ))}
       </SimpleGrid>
     </Box>
   );

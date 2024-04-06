@@ -1,7 +1,11 @@
 import React from "react";
 import { Box, Flex, Text, Image, Button } from "@chakra-ui/react";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, addToCart }) => {
+  const handleAddToCart = () => {
+    addToCart(product);
+  };
+
   return (
     <Box
       boxShadow={
@@ -37,7 +41,11 @@ const ProductCard = ({ product }) => {
           </Text>
         </Box>
         <br />
-        <Button colorScheme="linkedin" variant="solid">
+        <Button
+          colorScheme="linkedin"
+          variant="solid"
+          onClick={handleAddToCart}
+        >
           Add To Cart
         </Button>
       </Box>

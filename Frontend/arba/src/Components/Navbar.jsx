@@ -83,7 +83,7 @@ const Navbar = () => {
             Contact
           </NavLink>
           <NavLink
-            to={"/about"}
+            to={"/cart"}
             style={({ isActive }) => ({
               color: isActive ? "#00AFF0" : "black",
               fontSize: "18px",
