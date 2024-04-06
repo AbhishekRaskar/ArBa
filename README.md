@@ -12,7 +12,30 @@ Need to make changes? Click on edit to edit any Category & its details promptly.
 ### Delete Category:
 Hit the delete button to remove it from your list efficiently.
 
-
+## Endpoints
+### User
+user/signup - for signup
+<br />
+user/login - for login
+<br />
+user/update/:id - for updating user data
+<br />
+### Products
+/product/getall - for getting all the product data
+<br />
+/product/add - for posting product data
+<br />
+/product/update/:id - for updating product
+<br />
+/product/delete/:id - for delete product
+### Category
+/category/add - for posting category data
+<br />
+/category/ - for getting all category data
+<br />
+/category/update/:id - for updating category
+<br />
+/category/delete/:id - for delete category
 
 **App Deployed Link:** [Arba](https://arba-iota.vercel.app/)
 <br />
