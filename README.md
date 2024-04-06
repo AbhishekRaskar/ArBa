@@ -37,7 +37,7 @@ user/update/:id - for updating user data
 <br />
 /category/delete/:id - for delete category
 
-**App Deployed Link:** [Arba](https://arba-iota.vercel.app/)
+**App Deployed Link:** [Arba](https://arba-three.vercel.app/)
 <br />
 **Backend Deployed Link:** [Backend](https://arba-be.onrender.com/)
 # To Check The Website Features SignIn with
@@ -122,7 +122,7 @@ Simple and user-friendly register page.
 
 
 Explore the Website:
-Visit http:&nbsp;[ArBa](https://arba-iota.vercel.app/) to explore the our website.
+Visit http:&nbsp;[ArBa](https://arba-three.vercel.app/) to explore the our website.
 
 Dear ArBa Users,
 
