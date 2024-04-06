@@ -28,7 +28,7 @@ const Home = () => {
   const [showDialog, setShowDialog] = useState(true);
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
-  const toast = useToast(); // Initialize useToast hook
+  const toast = useToast(); 
 
   useEffect(() => {
     const hasAcceptedTerms = localStorage.getItem("acceptedTerms");

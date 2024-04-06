@@ -1,9 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Flex, Text, Image, Button } from "@chakra-ui/react";
 
-const ProductCard = ({ product, addToCart }) => {
+const ProductCard = ({ product, addToCart, updateQuantity }) => {
+  const [isInCart, setIsInCart] = useState(product.quantity > 0);
+  const [quantity, setQuantity] = useState(product.quantity || 1);
+
   const handleAddToCart = () => {
-    addToCart(product);
+    addToCart({ ...product, quantity });
+    setIsInCart(true);
+    if (updateQuantity) {
+      updateQuantity([{ ...product, quantity }]);
+    }
+  };
+
+  const increaseQuantity = () => {
+    setQuantity(quantity + 1);
+    if (updateQuantity) {
+      updateQuantity([{ ...product, quantity: quantity + 1 }]);
+    }
+  };
+
+  const decreaseQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+      if (updateQuantity) {
+        updateQuantity([{ ...product, quantity: quantity - 1 }]);
+      }
+    }
   };
 
   return (
@@ -41,13 +64,35 @@ const ProductCard = ({ product, addToCart }) => {
           </Text>
         </Box>
         <br />
-        <Button
-          colorScheme="linkedin"
-          variant="solid"
-          onClick={handleAddToCart}
-        >
-          Add To Cart
-        </Button>
+        {isInCart ? (
+          <Flex margin="auto" alignItems="center" justifyContent="center">
+            <Button
+              colorScheme="teal"
+              variant="solid"
+              size="sm"
+              onClick={decreaseQuantity}
+            >
+              -
+            </Button>
+            <Text mx="2">{quantity}</Text>
+            <Button
+              colorScheme="teal"
+              variant="solid"
+              size="sm"
+              onClick={increaseQuantity}
+            >
+              +
+            </Button>
+          </Flex>
+        ) : (
+          <Button
+            colorScheme="linkedin"
+            variant="solid"
+            onClick={handleAddToCart}
+          >
+            Add To Cart
+          </Button>
+        )}
       </Box>
     </Box>
   );

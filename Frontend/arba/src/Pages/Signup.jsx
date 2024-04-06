@@ -21,9 +21,11 @@ const Signup = () => {
     fullName: "",
     userName: "",
     age: "",
+    avatar: "", // Change to empty string for URL input
   });
   const toast = useToast();
   const navigate = useNavigate();
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -66,7 +68,6 @@ const Signup = () => {
         isClosable: true,
         position: "top",
       });
-      // Handle error, show error message to the user, etc.
     }
   };
 
@@ -153,6 +154,17 @@ const Signup = () => {
                 type="password"
                 name="password"
                 value={formData.password}
+                onChange={handleChange}
+                variant="flushed"
+                borderColor="#00AFF0"
+              />
+            </FormControl>
+            <FormControl id="avatar" isRequired>
+              <FormLabel>Avatar (URL)</FormLabel>
+              <Input
+                type="text"
+                name="avatar"
+                value={formData.avatar}
                 onChange={handleChange}
                 variant="flushed"
                 borderColor="#00AFF0"

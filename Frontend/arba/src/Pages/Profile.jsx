@@ -14,10 +14,6 @@ import {
   AlertDialogHeader,
   AlertDialogContent,
   AlertDialogOverlay,
-  Editable,
-  EditablePreview,
-  EditableInput,
-  IconButton,
   useToast,
 } from "@chakra-ui/react";
 import { FaEdit } from "react-icons/fa";
@@ -28,8 +24,8 @@ const Profile = () => {
   const [newPassword, setNewPassword] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
   const [isAlertOpen, setIsAlertOpen] = useState(false);
+  const [avatarURL, setAvatarURL] = useState("");
   const toast = useToast();
-
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -46,12 +42,18 @@ const Profile = () => {
     }));
   };
 
+  const handleAvatarChange = (e) => {
+    setAvatarURL(e.target.value);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const userId = user._id;
-      const url = `https://arba-be.onrender.com/users/update/${userId}`;
-      const response = await axios.put(url, user);
+      const updatedUser = { ...user, avatar: avatarURL };
+      const response = await axios.put(
+        `https://arba-be.onrender.com/users/update/${user._id}`,
+        updatedUser
+      );
       console.log(response.data);
       // Update local storage with updated user data
       localStorage.setItem("user", JSON.stringify(response.data.user));
@@ -62,6 +64,7 @@ const Profile = () => {
         duration: 3000,
         isClosable: true,
       });
+      window.location.reload();
     } catch (error) {
       console.error("Error updating profile:", error);
       toast({
@@ -75,12 +78,13 @@ const Profile = () => {
 
   const handlePasswordChange = async () => {
     try {
-      const userId = user._id;
-      const url = `https://arba-be.onrender.com/users/update/${userId}`;
-      const response = await axios.put(url, {
-        currentPassword,
-        newPassword,
-      });
+      const response = await axios.put(
+        `https://arba-be.onrender.com/users/update/${user._id}`,
+        {
+          currentPassword,
+          newPassword,
+        }
+      );
       console.log(response.data);
       // Update local storage with updated user data
       localStorage.setItem("user", JSON.stringify(response.data.user));
@@ -118,6 +122,14 @@ const Profile = () => {
       <VStack w={"100%"} spacing={6} align="stretch">
         <Avatar m={"auto"} size="xl" src={user.avatar} />
         <form onSubmit={handleSubmit} style={{ width: "100%" }}>
+          <FormControl id="avatar">
+            <FormLabel>Avatar URL</FormLabel>
+            <Input
+              defaultValue={user.avatar}
+              name="avatar"
+              onChange={handleAvatarChange}
+            />
+          </FormControl>
           <FormControl id="fullName">
             <FormLabel>Full Name</FormLabel>
             <Input

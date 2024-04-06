@@ -9,32 +9,20 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { IoIosRemoveCircleOutline } from "react-icons/io";
+import ProductCard from "../Components/ProductCard"; 
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart"));
     if (storedCart) {
-      // Set initial quantity to 1 for each item if not already set
-      const updatedCart = storedCart.map((item) => ({
-        ...item,
-        quantity: item.quantity || 1,
-      }));
-      setCart(updatedCart);
+      setCart(storedCart);
     }
   }, []);
 
-  const updateQuantity = (index, newQuantity) => {
-    const updatedCart = [...cart];
-    updatedCart[index].quantity = newQuantity;
-    setCart(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-  };
-
-  const removeFromCart = (index) => {
-    const updatedCart = [...cart];
-    updatedCart.splice(index, 1);
+  const updateCart = (updatedCart) => {
     setCart(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
@@ -42,25 +30,31 @@ const Cart = () => {
   const increaseQuantity = (index) => {
     const updatedCart = [...cart];
     updatedCart[index].quantity += 1;
-    setCart(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    updateCart(updatedCart);
   };
 
   const decreaseQuantity = (index) => {
     const updatedCart = [...cart];
     if (updatedCart[index].quantity > 1) {
       updatedCart[index].quantity -= 1;
-      setCart(updatedCart);
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
+      updateCart(updatedCart);
     }
+  };
+
+  const removeFromCart = (index) => {
+    const updatedCart = [...cart];
+    updatedCart.splice(index, 1);
+    updateCart(updatedCart);
   };
 
   return (
     <Box>
-      <Text fontSize="2xl" fontWeight="bold" mb={4}>
-        Your Cart
-      </Text>
-      {cart && cart.length > 0 ? (
+      {!token && (
+        <Text fontSize="2xl" fontWeight="bold" mb={4}>
+          Please log in to view your cart.
+        </Text>
+      )}
+      {token && cart && cart.length > 0 ? (
         <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={4}>
           {cart.map((item, index) => (
             <Box
@@ -126,9 +120,9 @@ const Cart = () => {
             </Box>
           ))}
         </SimpleGrid>
-      ) : (
-        <Text>Your cart is empty.</Text>
-      )}
+      ) : token ? (
+        <Text fontSize={"20"}>Your cart is empty.</Text>
+      ) : null}
     </Box>
   );
 };
