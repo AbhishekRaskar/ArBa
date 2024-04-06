@@ -81,6 +81,10 @@ react-icons: For adding SVG icons to React applications.
 ### Home Page
 ![Screenshot (550)](https://github.com/AbhishekRaskar/ArBa/assets/112754426/b174d278-1c35-486d-a20f-e0df57b88cdb)
 
+### Cart Page
+![Screenshot (563)](https://github.com/AbhishekRaskar/ArBa/assets/112754426/cb672abf-58e1-4fa5-bde7-6a2345759484)
+
+
 ### My Store Page
 *for Category*
 ![Screenshot (553)](https://github.com/AbhishekRaskar/ArBa/assets/112754426/dfe7da4d-a8e5-49c5-a26a-6bce22783ba7)
