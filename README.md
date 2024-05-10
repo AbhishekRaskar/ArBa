@@ -37,12 +37,12 @@ user/update/:id - for updating user data
 <br />
 /category/delete/:id - for delete category
 
-**App Deployed Link:** [Arba](https://arba-three.vercel.app/)
+**App Deployed Link:** [Arba](https://arbadevelopement.vercel.app/)
 <br />
 **Backend Deployed Link:** [Backend](https://arba-be.onrender.com/)
 # To Check The Website Features SignIn with
 ### Email : Abhi@gmail.com
-### Password : Abhi@123.com
+### Password : Abhi@1234.com
 # Key Features
 Category
 Description: Explore our Profile Section Under User Icon to manage Category & Products Efficeinetly
@@ -81,7 +81,7 @@ react-icons: For adding SVG icons to React applications.
 
 ## Screenshots
 ### Home Page
-![Screenshot (550)](https://github.com/AbhishekRaskar/ArBa/assets/112754426/b174d278-1c35-486d-a20f-e0df57b88cdb)
+![Screenshot 2024-05-10 152404](https://github.com/AbhishekRaskar/ArBa/assets/112754426/b52cb2b5-7a0a-49b0-9df8-ddb4ef88d6f7)
 
 ### Cart Page
 ![Screenshot (563)](https://github.com/AbhishekRaskar/ArBa/assets/112754426/cb672abf-58e1-4fa5-bde7-6a2345759484)
@@ -113,16 +113,16 @@ You can edit the Product
 
 ### Login Page
 Simple and user-friendly register page.
-![Screenshot (559)](https://github.com/AbhishekRaskar/ArBa/assets/112754426/6c91b4ff-ddea-4d7d-82f8-cca5ff6db860)
+![Screenshot 2024-05-10 152419](https://github.com/AbhishekRaskar/ArBa/assets/112754426/bef48669-8ee7-4145-8ab7-fb5106ca4920)
 
 
 ### Register Page
 Simple and user-friendly register page.
-![Screenshot (560)](https://github.com/AbhishekRaskar/ArBa/assets/112754426/4fb8e9e3-4fb0-4a5b-bf33-543cc65051a3)
+![Screenshot 2024-05-10 152440](https://github.com/AbhishekRaskar/ArBa/assets/112754426/a06686cf-7fa6-4383-8909-88d43e271fd3)
 
 
 Explore the Website:
-Visit http:&nbsp;[ArBa](https://arba-three.vercel.app/) to explore the our website.
+Visit http:&nbsp;[ArBa](https://arbadevelopement.vercel.app/) to explore the our website.
 
 Dear ArBa Users,
 
