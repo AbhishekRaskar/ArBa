@@ -81,18 +81,19 @@ react-icons: For adding SVG icons to React applications.
 
 ## Screenshots
 ### Home Page
-![Screenshot 2024-05-10 152404](https://github.com/AbhishekRaskar/ArBa/assets/112754426/b52cb2b5-7a0a-49b0-9df8-ddb4ef88d6f7)
+![Screenshot 2024-05-12 142758](https://github.com/AbhishekRaskar/ArBa/assets/112754426/1eb79978-735c-4df8-855e-aea98c1d0763)
+![Screenshot 2024-05-12 142806](https://github.com/AbhishekRaskar/ArBa/assets/112754426/7859ab4c-af61-4c93-9207-d3704bc15607)
 
 ### Cart Page
-![Screenshot (563)](https://github.com/AbhishekRaskar/ArBa/assets/112754426/cb672abf-58e1-4fa5-bde7-6a2345759484)
-
+![Screenshot 2024-05-12 143027](https://github.com/AbhishekRaskar/ArBa/assets/112754426/19f763f3-322d-4b58-9509-ede92f511fe3)
 
 ### My Store Page
 *for Category*
 ![Screenshot (553)](https://github.com/AbhishekRaskar/ArBa/assets/112754426/dfe7da4d-a8e5-49c5-a26a-6bce22783ba7)
 
 *for Products*
-![Screenshot (554)](https://github.com/AbhishekRaskar/ArBa/assets/112754426/18273d4e-b637-48aa-9d72-4b3901d98952)
+![Screenshot 2024-05-12 143112](https://github.com/AbhishekRaskar/ArBa/assets/112754426/79c49b03-fb73-4e79-80e5-3aa1d349afa8)
+
 
 ### To Add New Category
 *You can add the Category here*
