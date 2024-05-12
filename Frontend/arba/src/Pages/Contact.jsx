@@ -15,7 +15,7 @@ const Contact = () => {
       <Text fontSize="2xl" fontWeight="bold" mb={4}>
         Contact Us
       </Text>
-      <VStack align="start" spacing={4} mb={6}>
+      <VStack align="center" spacing={4} mb={6}>
         <Text fontSize="lg">Address: Pune, India</Text>
         <Text fontSize="lg">Phone: +91-1234567890</Text>
         <Text fontSize="lg">Email: contact@arba.com</Text>

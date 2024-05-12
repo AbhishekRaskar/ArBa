@@ -11,24 +11,16 @@ import {
   SimpleGrid,
   useToast, // Import useToast hook
 } from "@chakra-ui/react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import Slider from "../Components/Slider";
 import ProductCard from "../Components/ProductCard";
 
-const StyledSlider = ({ children }) => {
-  return (
-    <Box width="90%" mx="auto" mt="5">
-      {children}
-    </Box>
-  );
-};
+
 
 const Home = () => {
   const [showDialog, setShowDialog] = useState(true);
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
-  const toast = useToast(); 
+  const toast = useToast();
 
   useEffect(() => {
     const hasAcceptedTerms = localStorage.getItem("acceptedTerms");
@@ -86,24 +78,7 @@ const Home = () => {
     }
   };
 
-  const sliderSettings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    customPaging: function (i) {
-      return (
-        <Box
-          bg="black"
-          height="8px"
-          width="8px"
-          borderRadius="50%"
-          display="inline-block"
-        />
-      );
-    },
-  };
+ 
 
   return (
     <Box>
@@ -116,7 +91,7 @@ const Home = () => {
           </ModalBody>
           <ModalFooter>
             <Button
-              colorScheme="blue"
+              colorScheme="linkedin"
               mr={3}
               onClick={() => {
                 localStorage.setItem("acceptedTerms", "true");
@@ -130,46 +105,7 @@ const Home = () => {
         </ModalContent>
       </Modal>
 
-      <StyledSlider>
-        <Slider {...sliderSettings}>
-          <div>
-            <Box
-              width="100%"
-              height="70vh"
-              bgImage="url('https://images.pexels.com/photos/459203/pexels-photo-459203.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')"
-              bgSize="cover"
-              bgPosition="center"
-              p={4}
-              color="white"
-              borderRadius="md"
-            ></Box>
-          </div>
-          <div>
-            <Box
-              width="100%"
-              height="70vh"
-              bgImage="url('https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')"
-              bgSize="cover"
-              bgPosition="center"
-              p={4}
-              color="white"
-              borderRadius="md"
-            ></Box>
-          </div>
-          <div>
-            <Box
-              width="100%"
-              height="70vh"
-              bgImage="url('https://images.pexels.com/photos/842711/pexels-photo-842711.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')"
-              bgSize="cover"
-              bgPosition="center"
-              p={4}
-              color="white"
-              borderRadius="md"
-            ></Box>
-          </div>
-        </Slider>
-      </StyledSlider>
+      <Slider />
       <br />
       <br />
       <br />

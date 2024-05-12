@@ -12,7 +12,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { Link, useNavigate } from "react-router-dom";
-import SignupImage from "../Images/Signup.avif";
+import LoginImage from "../Images/Login.png";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -21,8 +21,9 @@ const Signup = () => {
     fullName: "",
     userName: "",
     age: "",
-    avatar: "", // Change to empty string for URL input
+    avatar: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
   const toast = useToast();
   const navigate = useNavigate();
 
@@ -35,6 +36,7 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const response = await fetch(
         "https://arba-be.onrender.com/users/signup",
@@ -68,27 +70,22 @@ const Signup = () => {
         isClosable: true,
         position: "top",
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <Box
-      display="flex"
-      height="100vh"
-      justifyContent="flex-end"
+      display="grid"
+      gridTemplateColumns={{ base: "1fr", md: "25% 1fr" }}
+      gap={6}
       alignItems="center"
-      bgImage={`url(${SignupImage})`}
-      bgSize="cover"
-      bgPosition="center"
-      bgRepeat="no-repeat"
+      justifyContent="center"
+      p={4}
     >
-      <Box
-        bg="rgba(255, 255, 255, 0.8)"
-        width="35%"
-        margin={"auto"}
-        p={"20px"}
-        borderRadius={"10px"}
-      >
+      <img src={LoginImage} alt="Login" style={{ width: "100%" }} />
+      <Box bg="rgba(255, 255, 255, 0.8)" borderRadius={"10px"}>
         <Heading mb="4" fontSize="4xl" color="black" textAlign="center">
           ARBA Solutions
         </Heading>
@@ -101,9 +98,8 @@ const Signup = () => {
         >
           Create Your Account and Unlock Exclusive Benefits
         </Text>
-        <br />
         <form onSubmit={handleSubmit}>
-          <VStack spacing={4} align="stretch">
+          <VStack spacing={1} align="stretch" p={4}>
             <FormControl id="fullName" isRequired>
               <FormLabel>Full Name</FormLabel>
               <Input
@@ -112,7 +108,7 @@ const Signup = () => {
                 value={formData.fullName}
                 onChange={handleChange}
                 variant="flushed"
-                borderColor="#00AFF0"
+                borderColor="#06B6D4"
               />
             </FormControl>
             <FormControl id="userName" isRequired>
@@ -123,7 +119,7 @@ const Signup = () => {
                 value={formData.userName}
                 onChange={handleChange}
                 variant="flushed"
-                borderColor="#00AFF0"
+                borderColor="#06B6D4"
               />
             </FormControl>
             <FormControl id="email" isRequired>
@@ -134,7 +130,7 @@ const Signup = () => {
                 value={formData.email}
                 onChange={handleChange}
                 variant="flushed"
-                borderColor="#00AFF0"
+                borderColor="#06B6D4"
               />
             </FormControl>
             <FormControl id="age" isRequired>
@@ -145,7 +141,7 @@ const Signup = () => {
                 value={formData.age}
                 onChange={handleChange}
                 variant="flushed"
-                borderColor="#00AFF0"
+                borderColor="#06B6D4"
               />
             </FormControl>
             <FormControl id="password" isRequired>
@@ -156,7 +152,7 @@ const Signup = () => {
                 value={formData.password}
                 onChange={handleChange}
                 variant="flushed"
-                borderColor="#00AFF0"
+                borderColor="#06B6D4"
               />
             </FormControl>
             <FormControl id="avatar" isRequired>
@@ -167,35 +163,35 @@ const Signup = () => {
                 value={formData.avatar}
                 onChange={handleChange}
                 variant="flushed"
-                borderColor="#00AFF0"
+                borderColor="#06B6D4"
               />
             </FormControl>
           </VStack>
-          <br />
-          <Stack spacing={4} direction="row" justify="center">
+          <Stack spacing={4} direction="row" justify="center" p={4}>
             <Button
               type="submit"
               size={"lg"}
               w={"50%"}
-              bg={"#00AFF0"}
+              bg={"#06B6D4"}
               color={"white"}
               _hover={{
-                bg: "#00AFF0",
+                bg: "#06B6D4",
               }}
               borderRadius={40}
+              isLoading={isLoading}
+              loadingText="Signing up"
             >
               Sign Up
             </Button>
           </Stack>
         </form>
-        <br />
-        <Text textAlign="center">
+        <Text textAlign="center" mt={4}>
           Already have an account?&nbsp;
           <Link
             style={{
               textDecoration: "none",
-              textDecorationColor: "#00AFF0",
-              color: "#00AFF0",
+              textDecorationColor: "#06B6D4",
+              color: "#06B6D4",
             }}
             to="/login"
           >

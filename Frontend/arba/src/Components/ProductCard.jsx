@@ -31,22 +31,31 @@ const ProductCard = ({ product, addToCart, updateQuantity }) => {
 
   return (
     <Box
-      boxShadow={
-        "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;"
-      }
-      maxW="sm"
       borderWidth="1px"
       borderRadius="lg"
       overflow="hidden"
+      boxShadow="rgba(0, 0, 0, 0.35) 0px 5px 15px;"
+      maxW="md"
+      bg="white"
+      transition="transform 0.2s, box-shadow 0.2s"
+      _hover={{ transform: "translateY(-4px)", boxShadow: "xl" }}
     >
-      <Image m={"auto"} w={"50%"} src={product.image} alt={product.title} />
-      <br />
+      <Box position="relative" w="100%" h="200px">
+        {" "}
+        <Image
+          src={product.image}
+          alt={product.title}
+          objectFit="cover"
+          w="100%"
+          h="100%"
+        />
+      </Box>
       <Box p="6">
-        <Flex alignItems="baseline">
-          <Text m={"auto"} fontSize="sm" color="gray.500">
-            ID : {product.category}
+        <Box d="flex" alignItems="baseline">
+          <Text fontSize="sm" color="gray.500">
+            ID: {product.category}
           </Text>
-        </Flex>
+        </Box>
 
         <Box
           mt="1"
@@ -58,6 +67,10 @@ const ProductCard = ({ product, addToCart, updateQuantity }) => {
           Title : {product.title}
         </Box>
 
+        <Text color="gray.600" mt="2">
+          Description : {product.description}
+        </Text>
+
         <Box>
           <Text mt="1" fontSize="lg" fontWeight="bold" color="gray.900">
             Price : ${product.price}
@@ -67,30 +80,40 @@ const ProductCard = ({ product, addToCart, updateQuantity }) => {
         {isInCart ? (
           <Flex margin="auto" alignItems="center" justifyContent="center">
             <Button
-              colorScheme="teal"
-              variant="solid"
-              size="sm"
+              bg="#EF4444"
+              _hover={{
+                bg: "#EF4444",
+              }}
               onClick={decreaseQuantity}
+              size="sm"
+              mr="2"
             >
               -
             </Button>
-            <Text mx="2">{quantity}</Text>
+            <Text>{quantity}</Text>
             <Button
-              colorScheme="teal"
-              variant="solid"
-              size="sm"
+              bg="#22C55E"
+              _hover={{
+                bg: "#22C55E",
+              }}
               onClick={increaseQuantity}
+              size="sm"
+              ml="2"
             >
               +
             </Button>
           </Flex>
         ) : (
           <Button
-            colorScheme="linkedin"
-            variant="solid"
+            mt="2"
+            color={"white"}
+            bg="#06B6D4"
+            _hover={{
+              bg: "#06B6D4",
+            }}
             onClick={handleAddToCart}
           >
-            Add To Cart
+            Add to Cart
           </Button>
         )}
       </Box>

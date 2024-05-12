@@ -20,7 +20,7 @@ import {
   FormControl,
   FormLabel,
   Select,
-  useToast // Import useToast
+  useToast, // Import useToast
 } from "@chakra-ui/react";
 
 const Store = () => {
@@ -32,6 +32,7 @@ const Store = () => {
   const [newItemName, setNewItemName] = useState("");
   const [newItemDescription, setNewItemDescription] = useState("");
   const [newItemPrice, setNewItemPrice] = useState(0);
+  const [newItemImageURL, setNewItemImageURL] = useState(""); // State for image URL
   const [selectedCategory, setSelectedCategory] = useState("");
   const token = localStorage.getItem("token");
   const toast = useToast(); // Initialize useToast
@@ -220,7 +221,7 @@ const Store = () => {
           description: newItemDescription,
           price: newItemPrice,
           category: selectedCategory,
-          image: "default_image.png",
+          image: newItemImageURL, // Use the provided image URL
         },
         {
           headers: {
@@ -252,7 +253,6 @@ const Store = () => {
       });
     }
   };
-
 
   const handleChange = (e, id, field) => {
     const { value } = e.target;
@@ -295,6 +295,8 @@ const Store = () => {
             {showCategories && <Th>Slug</Th>}
             {!showCategories && <Th>Description</Th>}
             {!showCategories && <Th>Price</Th>}
+            {!showCategories && <Th>Image</Th>}{" "}
+            {/* Added Category column header */}
             <Th m={"auto"}>Operations</Th>
           </Tr>
         </Thead>
@@ -362,7 +364,15 @@ const Store = () => {
                       item.price
                     )}
                   </Td>
-                  <Td>{item.category && item.category.name}</Td>
+                  <Td>
+                    {item.image && (
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        style={{ maxWidth: "100px" }}
+                      />
+                    )}
+                  </Td>
                 </>
               )}
               <Td>
@@ -429,6 +439,17 @@ const Store = () => {
                   type="number"
                   value={newItemPrice}
                   onChange={(e) => setNewItemPrice(e.target.value)}
+                />
+              </FormControl>
+            )}
+
+            {!showCategories && (
+              <FormControl>
+                <FormLabel>Image URL</FormLabel>
+                <Input
+                  type="text"
+                  value={newItemImageURL}
+                  onChange={(e) => setNewItemImageURL(e.target.value)}
                 />
               </FormControl>
             )}

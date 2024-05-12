@@ -10,17 +10,20 @@ import {
   FormLabel,
   Stack,
   useToast,
+  SimpleGrid,
 } from "@chakra-ui/react";
 
-import LoginImage from "../Images/Login.avif";
+import Login from "../Images/Login.png";
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const toast = useToast();
 
   const handleLogin = async () => {
+    setIsLoading(true);
     try {
       const response = await axios.post(
         "https://arba-be.onrender.com/users/login",
@@ -52,96 +55,100 @@ const Login = () => {
         position: "top",
         isClosable: true,
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <Box
       p="8"
-      bgImage={`url(${LoginImage})`}
-      bgSize="cover"
-      bgPosition="center"
-      bgRepeat="no-repeat"
       alignItems="center"
       height="100vh"
+      display="flex"
+      justifyContent="center"
     >
-      <Box
-        bg="rgba(255, 255, 255, 0.8)"
-        borderRadius="lg"
-        width="30%"
-        margin={"auto"}
-        boxShadow="rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;"
-      >
-        <Heading mb="4" fontSize="4xl" color="black" textAlign="center">
-          ARBA Solutions
-        </Heading>
-        <Text
-          fontSize="lg"
-          fontStyle="italic"
-          color="gray"
-          textAlign="center"
-          mb="4"
+      <SimpleGrid columns={{ sm: 1, md: 2 }} gap={2} alignItems="center">
+        <img src={Login} alt="Login" style={{ maxWidth: "100%", height: "auto", marginBottom: "20px" }} />
+        <Box
+          bg="rgba(255, 255, 255, 0.8)"
+          borderRadius="lg"
+          width="100%"
+          boxShadow="rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;"
         >
-          Discover the convenience of ARBA Solutions. Sign in to access your
-          account
-        </Text>
-        <Box p={8}>
-          <Stack spacing={4}>
-            <FormControl id="email" isRequired>
-              <FormLabel color="black">Email address</FormLabel>
-              <Input
-                type="email"
-                variant="flushed"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                _focus={{ borderColor: "#00AFF0" }}
-                borderColor="#00AFF0"
-              />
-            </FormControl>
-            <FormControl id="password" isRequired>
-              <FormLabel color="black">Password</FormLabel>
-              <Input
-                type="password"
-                variant="flushed"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                _focus={{ borderColor: "#00AFF0" }}
-                borderColor="#00AFF0"
-              />
-            </FormControl>
-            <br />
-            <Stack spacing={10}>
-              <Button
-                onClick={handleLogin}
-                size="lg"
-                bg="#00AFF0"
-                color="white"
-                _hover={{
-                  bg: "#00AFF0",
-                }}
-                width="100%"
-                borderRadius={40}
-              >
-                Sign in
-              </Button>
-            </Stack>
-          </Stack>
-          <Text align="center" color="black" mt="4">
-            Don't have an account?&nbsp;
-            <Link
-              to="/signup"
-              style={{
-                textDecoration: "none",
-                color: "#00AFF0",
-              }}
+          <Stack spacing={4} p={8}>
+            <Heading mb="4" fontSize="4xl" color="black" textAlign="center">
+              ARBA Solutions
+            </Heading>
+            <Text
+              fontSize="lg"
+              fontStyle="italic"
+              color="gray"
+              textAlign="center"
+              mb="4"
             >
-              Sign Up
-            </Link>
-          </Text>
+              Discover the convenience of ARBA Solutions. Sign in to access your
+              account
+            </Text>
+            <Box>
+              <Stack spacing={4}>
+                <FormControl id="email" isRequired>
+                  <FormLabel color="black">Email address</FormLabel>
+                  <Input
+                    type="email"
+                    variant="flushed"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    _focus={{ borderColor: "#06B6D4" }}
+                    borderColor="#06B6D4"
+                  />
+                </FormControl>
+                <FormControl id="password" isRequired>
+                  <FormLabel color="black">Password</FormLabel>
+                  <Input
+                    type="password"
+                    variant="flushed"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    _focus={{ borderColor: "#06B6D4" }}
+                    borderColor="#06B6D4"
+                  />
+                </FormControl>
+                <Button
+                  isLoading={isLoading}
+                  loadingText="Loading..."
+                  color="white"
+                  variant="outline"
+                  spinnerPlacement="start"
+                  size="lg"
+                  borderRadius={40}
+                  onClick={handleLogin}
+                  bg="#06B6D4"
+                  _hover={{
+                    bg: "#06B6D4",
+                  }}
+                >
+                  Sign in
+                </Button>
+              </Stack>
+              <Text align="center" color="black" mt="4">
+                Don't have an account?&nbsp;
+                <Link
+                  to="/signup"
+                  style={{
+                    textDecoration: "none",
+                    color: "#06B6D4",
+                  }}
+                >
+                  Sign Up
+                </Link>
+              </Text>
+            </Box>
+          </Stack>
         </Box>
-      </Box>
+      </SimpleGrid>
     </Box>
   );
 };
 
-export default Login;
+export default LoginForm;

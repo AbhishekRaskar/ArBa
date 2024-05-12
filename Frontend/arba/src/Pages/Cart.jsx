@@ -9,7 +9,6 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { IoIosRemoveCircleOutline } from "react-icons/io";
-import ProductCard from "../Components/ProductCard"; 
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
@@ -72,7 +71,7 @@ const Cart = () => {
                 icon={<IoIosRemoveCircleOutline />}
                 onClick={() => removeFromCart(index)}
                 position="absolute"
-                fontSize={"20px"}
+                fontSize={"25px"}
                 top={2}
                 right={2}
                 variant="ghost"
@@ -90,7 +89,7 @@ const Cart = () => {
               <br />
               <Box p="4">
                 <Text fontSize="lg" fontWeight="bold" mb={2}>
-                  {item.title}
+                  Title : {item.title}
                 </Text>
                 <Text fontSize="md" color="gray.600" mb={2}>
                   Price: ${item.price}
@@ -99,7 +98,10 @@ const Cart = () => {
                   <Button
                     size="sm"
                     onClick={() => decreaseQuantity(index)}
-                    colorScheme="teal"
+                    bg="#EF4444"
+                    _hover={{
+                      bg: "#EF4444",
+                    }}
                     mr={2}
                   >
                     -
@@ -110,7 +112,10 @@ const Cart = () => {
                   <Button
                     size="sm"
                     onClick={() => increaseQuantity(index)}
-                    colorScheme="teal"
+                    bg="#22C55E"
+                    _hover={{
+                      bg: "#22C55E",
+                    }}
                     ml={2}
                   >
                     +
@@ -121,7 +126,9 @@ const Cart = () => {
           ))}
         </SimpleGrid>
       ) : token ? (
-        <Text fontSize={"20"}>Your cart is empty.</Text>
+        <Text textColor={"black"} fontWeight={"bold"} fontSize={"35"}>
+          Your cart is empty.
+        </Text>
       ) : null}
     </Box>
   );
